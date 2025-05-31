@@ -1,0 +1,4 @@
+::ng-deep .mat-mdc-dialog-container {
+    --mdc-dialog-container-color: white;
+    @apply overflow-hidden rounded-2xl bg-rose-50 !important;
+}

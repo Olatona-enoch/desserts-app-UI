@@ -1,0 +1,40 @@
+
+<div>
+    <div class="relative w-[250px] h-[240px] flex justify-center items-center shadow-sm rounded-xl ">
+        <img class="w-full h-full object-cover rounded-xl" src={{product.image}} alt="">
+        <button (click)="addtocart(product)" *ngIf="itemAtZero" class="absolute -bottom-5 rounded-full bg-white border-[1px] border-rose-500 w-[65%] p-[12px] font-medium text-rose-900 hover:border-red hover:text-red transition ease-in-out duration-300 ">
+            <div class="flex items-center justify-center gap-2">
+                <img class="object-cover" src="assets/images/icon-add-to-cart.svg" alt="">
+                <p class="text-base ">Add to Cart</p>
+            </div>
+        </button>
+        <button *ngIf="!itemAtZero" class="absolute -bottom-5 rounded-full w-[65%] p-[12px] font-medium bg-red border-[1px] border-red text-white transition ease-in-out duration-300 ">
+            <div class="flex items-center justify-between gap-2">
+                <div (click)="decrease(product)" class="button-div ">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 outline-btn cursor-pointer">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 hidden solid-btn cursor-pointer">
+                        <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm3 10.5a.75.75 0 0 0 0-1.5H9a.75.75 0 0 0 0 1.5h6Z" clip-rule="evenodd" />
+                    </svg>
+
+                </div>
+                <p>{{quantity}}</p>
+                <div (click)="addtocart(product)" class="button-div">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 outline-btn">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 hidden solid-btn">
+                        <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 9a.75.75 0 0 0-1.5 0v2.25H9a.75.75 0 0 0 0 1.5h2.25V15a.75.75 0 0 0 1.5 0v-2.25H15a.75.75 0 0 0 0-1.5h-2.25V9Z" clip-rule="evenodd" />
+                    </svg>
+                </div>
+                
+            </div>
+        </button>
+    </div>
+    <div class="mt-10 text-start">
+        <p class="mb-0 text-rose-400"> {{product.name}}</p>
+        <p class="text-lg font-medium  mb-0 text-rose-900"> {{product.variation}}</p>
+        <p class="font-medium text-lg text-red">${{product.price}}</p>
+    </div>
+</div>

@@ -1,0 +1,7 @@
+.button-div:hover .outline-btn {
+    @apply hidden
+}
+
+.button-div:hover .solid-btn{
+    @apply flex
+}
