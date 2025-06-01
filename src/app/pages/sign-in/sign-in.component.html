@@ -11,16 +11,61 @@
             <h1 class="font-medium text-5xl text-center text-rose-900"> Sign In</h1>
             <p class="text-xl text-center text-rose-400">Sign in to start using the desserts app </p>
 
-            <form class="flex flex-col w-full gap-6 mt-5 text-rose-500">
+            <form [formGroup]="signInForm" (ngSubmit)="onSubmit()" class="flex flex-col w-full gap-6 mt-5">
                 <div class="flex flex-col">
                     <label for="">Email</label>
-                    <input class="bg-transparent border-2 border-rose-500 rounded-xl p-3 focus:outline-none" type="text" placeholder="Enter your mail address">  
+                    <input type="email" formControlName="email" 
+                    autocomplete="youremail@email.com"
+                    class="bg-transparent border-2 border-rose-500 rounded-xl p-3 hover:border-purple-600 focus: border-" 
+                    [ngClass]="{'border-red-500': signInForm.get('email')?.invalid && signInForm.get('email')?.touched, 'border-rose-500': signInForm.get('email')?.valid}" 
+                    placeholder="Enter your email address">
+                    
+                    <div *ngIf="signInForm.get('email')?.touched && signInForm.get('email')?.invalid" class="text-sm text-red-500 mt-1">
+                        <p *ngIf="signInForm.get('email')?.errors?.['required']">Email is required.</p>
+                        <p *ngIf="signInForm.get('email')?.errors?.['email']">Invalid email Address.</p>
+                    </div>                
+  
                 </div>
 
                 <div class="flex flex-col">
                     <label for="">Password</label>
-                    <input class="bg-transparent border-2 border-rose-500 rounded-xl p-3 focus:outline-none" type="password" placeholder="Enter your password">
+                    <label for="password" 
+                    class="flex items-center justify-between bg-transparent border-2 border-rose-500 rounded-xl p-3 hover:border-purple-600 "
+                    [ngClass]="{'border-red-500': signInForm.get('password')?.invalid && signInForm.get('password')?.touched, 'border-rose-500': signInForm.get('password')?.valid}">
+
+                        <input [type]="showPassword ? 'text' : 'password'" 
+                        formControlName="password" id="password" name="password"
+                        autocomplete="new-password"
+                        class="grow h-full w-full focus:outline-0"
+                        placeholder="Enter your password">
+                        
+                        <label class="swap swap-rotate">
+                            <!-- this hidden checkbox controls the state -->
+                            <input (click)="toggleShowPassword()" type="checkbox" />
+
+                            <!-- sun icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" 
+                            class="size-6 swap-on">
+                                <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+                                <path fill-rule="evenodd" d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113-1.487 4.471-5.705 7.697-10.677 7.697-4.97 0-9.186-3.223-10.675-7.69a1.762 1.762 0 0 1 0-1.113ZM17.25 12a5.25 5.25 0 1 1-10.5 0 5.25 5.25 0 0 1 10.5 0Z" clip-rule="evenodd" />
+                            </svg>
+
+                            <!-- moon icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" 
+                            class="size-6 swap-off">
+                                <path d="M3.53 2.47a.75.75 0 0 0-1.06 1.06l18 18a.75.75 0 1 0 1.06-1.06l-18-18ZM22.676 12.553a11.249 11.249 0 0 1-2.631 4.31l-3.099-3.099a5.25 5.25 0 0 0-6.71-6.71L7.759 4.577a11.217 11.217 0 0 1 4.242-.827c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113Z" />
+                                <path d="M15.75 12c0 .18-.013.357-.037.53l-4.244-4.243A3.75 3.75 0 0 1 15.75 12ZM12.53 15.713l-4.243-4.244a3.75 3.75 0 0 0 4.244 4.243Z" />
+                                <path d="M6.75 12c0-.619.107-1.213.304-1.764l-3.1-3.1a11.25 11.25 0 0 0-2.63 4.31c-.12.362-.12.752 0 1.114 1.489 4.467 5.704 7.69 10.675 7.69 1.5 0 2.933-.294 4.242-.827l-2.477-2.477A5.25 5.25 0 0 1 6.75 12Z" />
+                            </svg>
+                        </label>
+                    </label>
+
+                    <div *ngIf="signInForm.get('password')?.touched && signInForm.get('password')?.invalid" class="text-sm text-red-500 mt-1">
+                        <p *ngIf="signInForm.get('password')?.errors?.['required']">Password is required.</p>
+                        <p *ngIf="signInForm.get('password')?.errors?.['minlength']">Minimum of 6 characters.</p>
+                    </div>
                 </div>
+
                 <div class="flex items-center justify-between flex-wrap gap-x-5">
                     <div class="flex gap-2 items-center">
                         <label for="">Remember me</label>
@@ -29,7 +74,7 @@
                     <p class="text-primary underline">Forgot your password?</p>    
                 </div>
                 
-                <button routerLink="/" class="btn text-white btn-block bg-red">Sign in</button>
+                <button type="submit"  class="btn text-white btn-block bg-custom-red" [disabled]="signInForm.invalid">Sign in</button>
             </form>
 
             <div class="flex items-center justify-center text-medium-gray my-5 w-full">

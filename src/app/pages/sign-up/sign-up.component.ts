@@ -8,6 +8,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class SignUpComponent implements OnInit {
   signUpForm!:FormGroup
+  showPassword: boolean = false;
 
   constructor(
     private fb: FormBuilder
@@ -21,14 +22,26 @@ export class SignUpComponent implements OnInit {
         phone: ['', [Validators.required, Validators.pattern(/^[0-9]{10,}$/)]],
         email: ['', [Validators.required, Validators.email]],
         password: ['', [Validators.required, Validators.minLength(6)]],
-        confirmPassword: ['', Validators.required]
+        confirmPassword: [{ value: '', disabled: true }, Validators.required]
       },
       {
         validators: this.passwordMatchValidator
       }
     );
+    this.signUpForm.get('password')?.valueChanges.subscribe(password => {
+      const confirmPasswordControl = this.signUpForm.get('confirmPassword');
+
+      if (!password) {
+        confirmPasswordControl?.disable();
+      } else {
+        confirmPasswordControl?.enable();
+      }
+    });
   }
 
+  toggleShowPassword(): void {
+    this.showPassword = !this.showPassword;
+  }
 
   passwordMatchValidator(form: FormGroup) {
     return form.get('password')?.value === form.get('confirmPassword')?.value
