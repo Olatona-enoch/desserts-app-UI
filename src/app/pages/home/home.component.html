@@ -1,8 +1,8 @@
 <div class="flex w-full justify-between mt-8">
     <div>
         <!-- <header class="text-start text-4xl capitalize text-rose-900 font-semibold"> Desserts</header> -->
-        <div class="grid grid-cols-3  gap-8">
-             <app-product-list
+        <div [@.disabled]="!products.length" [@listAnimation] class="grid grid-cols-3 gap-8">
+             <app-product-list [@popIn]
              *ngFor="let product of products"
                 [product]= "product"
              ></app-product-list>
@@ -10,5 +10,5 @@
     </div>
 
     <app-cart></app-cart>
-    <!-- <div><button routerLink="/signUp"> add</button></div> -->
+    <div><button routerLink="/confirm"> confirm</button></div>
 </div>

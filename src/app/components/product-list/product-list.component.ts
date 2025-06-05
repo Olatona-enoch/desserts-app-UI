@@ -1,11 +1,23 @@
 import { Component, Input } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
 import { Product } from 'src/app/services/product.service';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.css']
+  styleUrls: ['./product-list.component.css'],
+  animations: [
+    trigger('fadeIn', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('300ms ease-in', style({ opacity: 1 })),
+      ]),
+      transition(':leave', [
+        animate('200ms ease-out', style({ opacity: 0 })),
+      ]),
+    ]),
+  ],
 })
 export class ProductListComponent {
   @Input()

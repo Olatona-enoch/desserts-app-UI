@@ -74,6 +74,8 @@
                     <p class="text-primary underline">Forgot your password?</p>    
                 </div>
                 
+                <div *ngIf="errorMessage" class="text-red-500">{{ errorMessage }}</div>
+                
                 <button type="submit"  class="btn text-white btn-block bg-custom-red" [disabled]="signInForm.invalid">Sign in</button>
             </form>
 

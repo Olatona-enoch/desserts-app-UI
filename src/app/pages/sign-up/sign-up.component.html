@@ -144,6 +144,8 @@
                 <p>FORM STATUS: {{signUpForm.status}}</p>
                 <p>FORM STATUS: {{signUpForm.get('password')?.value}}</p>
 
+                <div *ngIf="errorMessage" class="text-red-500">{{ errorMessage }}</div>
+
                 <button type="submit" class="btn btn-block btn-primary" [disabled]="signUpForm.invalid">Register</button>
             </form>
 

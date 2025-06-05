@@ -21,8 +21,16 @@ module.exports = {
         'red-hat-text': ['"Red Hat Text"', 'sans-serif'],
         'dancing-script': ['"Dancing Script"'],
         'great-vibes': ['"Great Vibes"', 'sans-serif'],
-       
       },
+      keyframes: {
+        'pop-in': {
+          '0%': { transform: 'scale(0.8)', opacity: '0' },
+          '100%': { transform: 'scale(1)', opacity: '1' }
+        }
+      },
+      animation: {
+        'pop-in': 'pop-in 0.3s ease-out'
+      }
     },
   },
   plugins: [

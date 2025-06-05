@@ -8,4 +8,32 @@
 @tailwind components;
 @tailwind utilities;
 
+.tailwind-toast {
+  @apply px-6 py-5 rounded-lg shadow-lg text-sm font-medium w-full md:w-[500px]  !important;
+}
+
+.tailwind-toast .toast-title {
+  @apply ps-7 text-xl ; /* Header styling */
+}
+/* Optional: Tweak spacing for content inside */
+.tailwind-toast .toast-message {
+  @apply ps-7  text-lg !important;
+}
+
+.toast-success {
+  @apply bg-custom-green text-white !important;
+}
+
+.toast-error {
+  @apply bg-red-700 text-white !important;
+}
+
+.toast-info {
+  @apply bg-blue-600 text-white;
+}
+
+.toast-warning {
+  @apply bg-yellow-500 text-black;
+}
+
 html, body { height: 100%; }

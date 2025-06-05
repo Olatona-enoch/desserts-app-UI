@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
+import { AuthService } from 'src/app/services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-sign-up',
@@ -9,9 +12,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class SignUpComponent implements OnInit {
   signUpForm!:FormGroup
   showPassword: boolean = false;
+  errorMessage: string = '';
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private dialogRef: MatDialogRef<SignUpComponent>,
+    private toastr: ToastrService
   ){}
 
   ngOnInit(): void {
@@ -48,14 +55,60 @@ export class SignUpComponent implements OnInit {
       ? null : { mismatch: true };
   }
 
-  onSubmit() {
+  async onSubmit() {
     if (this.signUpForm.invalid) {
       this.signUpForm.markAllAsTouched();
+      this.onLoginError();
       return;
     }
+    const formData = this.signUpForm.getRawValue();
+    const userDetails: any = {
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      phone: formData.phone,
+      email: formData.email
+    };
+    const password = formData.password;
 
-    const formData = this.signUpForm.value;
+    try {
+      await this.authService.signUp(userDetails, password);
+      this.dialogRef.close(); // Close modal
+      this.onLoginSuccess();
+    } catch (error: any) {
+      this.errorMessage = error.message;
+    }
+
+    // const formData = this.signUpForm.value;
     console.log('Form data:', formData);
   }
 
+  onLoginSuccess() {
+  this.toastr.success('You have successfully signed Up!', 'Welcome');
+  }
+
+  onLoginError() {
+    this.toastr.error( 'Sign Up Failed');
+  }
+
 }
+
+
+//  Object
+// confirmPassword
+// : 
+// "247God"
+// email
+// : 
+// "enocadesees@gmail.com"
+// firstName
+// : 
+// "Marvel"
+// lastName
+// : 
+// "Olamide"
+// password
+// : 
+// "247God"
+// phone
+// : 
+// "08243104445"

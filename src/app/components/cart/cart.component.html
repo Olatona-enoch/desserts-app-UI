@@ -1,5 +1,5 @@
-<div class="card bg-white shadow-sm w-[385px]  px-7 rounded-lg">
-    <header class="mt-6 font-bold text-custom-red text-2xl">Your Cart ({{totalQuantity}})</header>
+<div class="card bg-white shadow-sm w-[385px]  px-7 rounded-lg" @slideInOut>
+    <header [@cartCountChange] class="mt-6 font-bold text-custom-red text-2xl">Your Cart ({{totalQuantity}})</header>
     <div class="card-body px-0 justify-center pb-3">
         <div *ngIf="empty" class="mt-4 flex flex-col items-center justify-center pb-4">
             <img src="assets/images/illustration-empty-cart.svg" alt="">
