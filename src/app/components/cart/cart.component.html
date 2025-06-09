@@ -1,9 +1,9 @@
-<div class="card bg-white shadow-sm w-[385px]  px-7 rounded-lg" @slideInOut>
+<div class="card bg-white shadow-sm lg:w-[385px] w-full px-6 rounded-lg" @slideInOut>
     <header [@cartCountChange] class="mt-6 font-bold text-custom-red text-2xl">Your Cart ({{totalQuantity}})</header>
     <div class="card-body px-0 justify-center pb-3">
         <div *ngIf="empty" class="mt-4 flex flex-col items-center justify-center pb-4">
             <img src="assets/images/illustration-empty-cart.svg" alt="">
-            <p class="text-base text-rose-500">Your added items will appear here</p>
+            <p class="text-base text-rose-500 text-center">Your added items will appear here</p>
         </div>
         <div *ngIf="!empty">
             <ul>
@@ -16,13 +16,13 @@
         </div>
     </div>
     <div *ngIf="!empty" class="pb-5">
-        <div class="flex justify-between">
+        <div class="flex justify-between items-center">
             <p class="text-rose-900">Order Total</p>
             <p class="text-rose-900 text-2xl font-semibold">${{totalPrice.toFixed(2)}}</p>
         </div>
-        <div class=" my-4 self-center flex items-center justify-center gap-4 h-[60px] bg-rose-100 rounded-lg">
-            <img src="assets/images/icon-carbon-neutral.svg" alt="">
-            <p class="text-sm"> This is a <span class="font-semibold">carbon-neutral</span> delivery</p>
+        <div class=" my-4 self-center flex items-center justify-center gap-4 h-[60px] bg-rose-100 rounded-lg w-full">
+            <img class="size-6" src="assets/images/icon-carbon-neutral.svg" alt="">
+            <p class="text-sm shrink"> This is a <span class="font-semibold">carbon-neutral</span> delivery</p>
         </div>
 
         <button (click)="openDialog()" class="btn-block bg-custom-red  text-rose-50 p-3 text-base rounded-full hover:bg-rose-950 transition ease-in duration-300"> Confirm Order</button>

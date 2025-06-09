@@ -5,6 +5,8 @@ import { CartItem } from 'src/app/services/cart-item';
 import { CartService } from 'src/app/services/cart.service';
 import { Product } from 'src/app/services/product.service';
 import { trigger, style, transition, animate } from '@angular/animations';
+import { AuthService } from 'src/app/services/auth.service';
+import { OrderConfirmationComponent } from 'src/app/modal/components/order-confirmation/order-confirmation.component';
 
 @Component({
   selector: 'app-cart',
@@ -33,6 +35,7 @@ import { trigger, style, transition, animate } from '@angular/animations';
 })
 export class CartComponent implements OnInit {
   empty: boolean = true;
+  // user$ = this.authService.user$
 
   cartItems: CartItem[] = [];
   totalQuantity: number = 0;
@@ -41,10 +44,14 @@ export class CartComponent implements OnInit {
 
   constructor(
     private cartService: CartService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
+    this.authService.user$.subscribe(user => {
+      this.signedIn = !!user;
+    });
     this.cartService.getCart().subscribe((items) => {
       this.cartItems = items;
       this.empty = this.cartItems.length === 0;
@@ -62,7 +69,11 @@ export class CartComponent implements OnInit {
   }
 
   openDialog() {
-    if(!this.signedIn){
+    if(this.signedIn){
+      this.dialog.open(OrderConfirmationComponent ,{
+        panelClass: 'order-modal',
+      });
+    } else {
       this.dialog.open(SignInComponent);
     }
     // this.dialog.open(SignUpComponent);

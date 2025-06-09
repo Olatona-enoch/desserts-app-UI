@@ -1,6 +1,6 @@
 
 <div>
-    <div class="relative w-[250px] h-[240px] flex justify-center items-center shadow-sm rounded-xl ">
+    <div class="relative w-full h-[240px] flex justify-center items-center shadow-sm rounded-xl ">
         <img class="w-full h-full object-cover rounded-xl" src={{product.image}} alt="">
         <button (click)="addtocart(product)" *ngIf="itemAtZero" class="absolute -bottom-5 rounded-full bg-white border-[1px] border-rose-500 w-[65%] p-[12px] font-medium text-rose-900 hover:border-custom-red hover:text-custom-red transition ease-in-out duration-300 ">
             <div class="flex items-center justify-center gap-2">

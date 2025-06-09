@@ -20,6 +20,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { SignInComponent } from './pages/sign-in/sign-in.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
+import { OrderListComponent } from './components/order-list/order-list.component';
 
 const firebase = {
   apiKey: "AIzaSyAE8E_q5JS8AzOgBG38pL3m6dNo8AWdZLk",
@@ -45,6 +46,7 @@ const firebase = {
     SignInComponent,
     NavbarComponent,
     SignUpComponent,
+    OrderListComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,6 @@
-<div class="flex w-full justify-between mt-8">
-    <div>
-        <!-- <header class="text-start text-4xl capitalize text-rose-900 font-semibold"> Desserts</header> -->
-        <div [@.disabled]="!products.length" [@listAnimation] class="grid grid-cols-3 gap-8">
+<div class="flex sm:flex-row flex-col  w-full justify-between mt-8 gap-10 ">
+    <div class="flex-1">
+        <div [@.disabled]="!products.length" [@listAnimation] class="grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-8">
              <app-product-list [@popIn]
              *ngFor="let product of products"
                 [product]= "product"
@@ -10,5 +9,5 @@
     </div>
 
     <app-cart></app-cart>
-    <div><button routerLink="/confirm"> confirm</button></div>
+    <!-- <div><button routerLink="/confirm"> confirm</button></div> -->
 </div>

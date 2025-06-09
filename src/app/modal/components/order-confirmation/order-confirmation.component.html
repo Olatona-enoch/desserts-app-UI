@@ -1,1 +1,35 @@
-<p>order-confirmation works!</p>
+<!-- <p routerLink="/">order-confirmation works!</p> -->
+<div class=" md:w-[600px] w-screen max-h-[680px] bg-white p-6 rounded-lg relative">
+    <div class="mb-3">
+        <a class="btn btn-sm btn-circle bg-rose-500 absolute right-4 top-4 text-white flex items-center justify-center" mat-dialog-close>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+            </svg>
+        </a>
+    </div>
+    <div class="mb-5">
+        <img class="size-10 my-2" src="assets/images/icon-order-confirmed.svg" alt="">
+        <h1 class="text-rose-900 text-4xl font-semibold my-2 ">Order Confirmation</h1>
+        <p class="text-base text-rose-500">We hope you enjoy your food</p>
+    </div>
+
+    <mat-dialog-content class="py-0 px-0">
+        <div class="bg-rose-100 px-6 py-7 rounded-lg overflow-auto">
+            <ul class="overflow-auto max-h-[260px]">
+                <app-order-list
+                *ngFor=" let orders of orderList"
+                [orders]="orders"
+                ></app-order-list>
+                
+            </ul>
+
+            <div class="flex justify-between items-center mt-6">
+                <p> Order Total</p>
+                <p class="text-2xl text-rose-900 font-semibold"> ${{amountToPay.toFixed(2)}}</p>
+            </div>
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button class=" rounded-full bg-custom-red text-white btn-block py-4 text-lg font-medium mt-8"> Click To Pay</button>
+    </mat-dialog-actions>
+</div>

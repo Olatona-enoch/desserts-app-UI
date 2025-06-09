@@ -4,6 +4,7 @@ import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import { MatIconModule} from '@angular/material/icon'
 import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
+import {MatDividerModule} from '@angular/material/divider';
 import { SignInComponent } from '../pages/sign-in/sign-in.component';
 
 
@@ -13,6 +14,7 @@ const MaterialComponents = [
   MatIconModule,
   MatSelectModule,
   MatInputModule,
+  MatDividerModule
 ];
 
 

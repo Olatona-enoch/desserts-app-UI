@@ -22,7 +22,7 @@ export class CartService {
     const existingItem = this.cartItems.find(item => item.product.id === product.id);
     if (existingItem) {
       existingItem.quantity++;
-      existingItem.fullPrice = existingItem.quantity * (existingItem.product.price);
+      existingItem.fullPrice = (existingItem.quantity * (existingItem.product.price));
     } else {
       this.cartItems.push({ product, quantity: 1, fullPrice:1 * product.price });
     }

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { AuthService } from 'src/app/services/auth.service';
 import { ToastrService } from 'ngx-toastr';
+import { SignInComponent } from '../sign-in/sign-in.component';
 
 @Component({
   selector: 'app-sign-up',
@@ -15,6 +16,7 @@ export class SignUpComponent implements OnInit {
   errorMessage: string = '';
 
   constructor(
+    private dialog: MatDialog,
     private fb: FormBuilder,
     private authService: AuthService,
     private dialogRef: MatDialogRef<SignUpComponent>,
@@ -89,6 +91,12 @@ export class SignUpComponent implements OnInit {
   onLoginError() {
     this.toastr.error( 'Sign Up Failed');
   }
+
+  signIn() {
+    this.dialog.closeAll();
+    this.dialog.open(SignInComponent);
+  }
+
 
 }
 
