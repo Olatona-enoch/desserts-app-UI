@@ -12,7 +12,7 @@
             <p class="text-xl text-center text-rose-400">Sign in to start using the desserts app </p>
 
             <form [formGroup]="signInForm" (ngSubmit)="onSubmit()" class="flex flex-col w-full gap-6 mt-5">
-                <!-- <div class="flex flex-col">
+                <div class="flex flex-col">
                     <label for="">Email</label>
                     <input type="email" formControlName="email" 
                     autocomplete="youremail@email.com"
@@ -25,7 +25,7 @@
                         <p *ngIf="signInForm.get('email')?.errors?.['email']">Invalid email Address.</p>
                     </div>                
   
-                </div> -->
+                </div>
 
                 <div class="flex flex-col">
                     <label for="">Password</label>
