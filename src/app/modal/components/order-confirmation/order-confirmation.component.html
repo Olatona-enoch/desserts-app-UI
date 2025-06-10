@@ -1,5 +1,5 @@
 <!-- <p routerLink="/">order-confirmation works!</p> -->
-<div class=" md:w-[600px] w-screen max-h-[680px] bg-white p-6 rounded-lg relative">
+<div class=" sm:w-[600px] w-screen max-h-[680px] bg-white p-6 rounded-lg relative">
     <div class="mb-3">
         <a class="btn btn-sm btn-circle bg-rose-500 absolute right-4 top-4 text-white flex items-center justify-center" mat-dialog-close>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -15,7 +15,7 @@
 
     <mat-dialog-content class="py-0 px-0">
         <div class="bg-rose-100 px-6 py-7 rounded-lg overflow-auto">
-            <ul class="overflow-auto max-h-[260px]">
+            <ul class="overflow-auto max-h-[260px] cursor-grab">
                 <app-order-list
                 *ngFor=" let orders of orderList"
                 [orders]="orders"

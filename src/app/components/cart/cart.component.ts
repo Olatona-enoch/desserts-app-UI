@@ -71,6 +71,7 @@ export class CartComponent implements OnInit {
   openDialog() {
     if(this.signedIn){
       this.dialog.open(OrderConfirmationComponent ,{
+        // maxWidth: '100vw',
         panelClass: 'order-modal',
       });
     } else {

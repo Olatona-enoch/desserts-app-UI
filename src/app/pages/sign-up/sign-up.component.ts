@@ -94,7 +94,9 @@ export class SignUpComponent implements OnInit {
 
   signIn() {
     this.dialog.closeAll();
-    this.dialog.open(SignInComponent);
+    this.dialog.open(SignInComponent, {
+      maxWidth: '100vw',
+    });
   }
 
 

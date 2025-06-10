@@ -23,20 +23,13 @@ export class SignInComponent implements OnInit {
     private dialogRef: MatDialogRef<SignInComponent>,
     private toastr: ToastrService
   ){}
+
   ngOnInit(): void {
    this.signInForm = this.fb.group (
     {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
     })
-  }
-
-  signUp() {
-    if(!this.signedIn){
-      this.dialog.closeAll();
-      this.dialog.open(SignUpComponent);
-    }
-    // this.dialog.open(SignUpComponent);
   }
 
   async onSubmit() {
@@ -75,5 +68,14 @@ export class SignInComponent implements OnInit {
   onLoginError(error: string) {
     this.toastr.error(error, 'Login Failed');
   }
+
+    signUp() {
+    console.log("signup link clicked")
+    this.dialog.closeAll();
+    this.dialog.open(SignUpComponent, {
+      maxWidth: '100vw',
+    });
+  }
+
 
 }
