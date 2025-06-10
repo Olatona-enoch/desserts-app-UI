@@ -1,8 +1,8 @@
 export const environment = {
   production: true,
   firebase: {
-    apiKey: (window as any)['apiKey'],
-    authDomain: (window as any)["authDomain"],
+    apiKey: (window as any).env.apiKey,
+    authDomain: (window as any).env.authDomain,
     databaseURL: (window as any)["databaseURL"],
     projectId: (window as any)["projectId"],
     storageBucket: (window as any)["storageBucket"],
