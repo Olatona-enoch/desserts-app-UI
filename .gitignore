@@ -44,7 +44,8 @@ firestore-upload/serviceAccountKey.json
 
 # firebase Config
 /src/environments/environment.ts
-/src/environments/firebase-config.ts
+# config
+/src/environments/firebaseconfig.ts
 
 #process env
 /src/process.env
