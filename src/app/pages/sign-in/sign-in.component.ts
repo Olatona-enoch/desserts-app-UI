@@ -54,6 +54,9 @@ export class SignInComponent implements OnInit {
       this.onLoginError(error);
       console.error('Sign-in error:', error);
       this.errorMessage = error.message;
+      setTimeout(() => {
+        this.errorMessage = '';
+      },1200);
     }
   }
 
