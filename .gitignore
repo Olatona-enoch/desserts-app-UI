@@ -43,8 +43,6 @@ Thumbs.db
 firestore-upload/serviceAccountKey.json
 
 # firebase Config
-/src/environments/environment.ts
-# config
 /src/environments/firebaseconfig.ts
 
 #process env
