@@ -1,13 +1,14 @@
 export const environment = {
   production: true,
   firebase: {
-    apiKey: process.env["apiKey"],
-    authDomain: process.env["authDomain"],
-    databaseURL: process.env["databaseURL"],
-    projectId: process.env["projectId"],
-    storageBucket: process.env["storageBucket"],
-    messagingSenderId: process.env["messagingSenderId"],
-    appId: process.env["appId"],
-    measurementId: process.env["measurementId"]
+    apiKey: (window as any)['apiKey'],
+    authDomain: (window as any)["authDomain"],
+    databaseURL: (window as any)["databaseURL"],
+    projectId: (window as any)["projectId"],
+    storageBucket: (window as any)["storageBucket"],
+    messagingSenderId: (window as any)["messagingSenderId"],
+    appId: (window as any)["appId"],
+    measurementId: (window as any)["measurementId"]
+
   }
 };
