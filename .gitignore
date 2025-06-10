@@ -47,3 +47,4 @@ firestore-upload/serviceAccountKey.json
 
 #process env
 /src/process.env
+/src/environments/environment.prod.ts
