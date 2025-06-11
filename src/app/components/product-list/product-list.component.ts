@@ -25,6 +25,7 @@ export class ProductListComponent {
   itemAtZero: boolean = true;
   quantity: number = 0;
 
+
   constructor(
     private cartService: CartService
   ){}

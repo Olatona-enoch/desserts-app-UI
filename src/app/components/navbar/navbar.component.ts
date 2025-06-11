@@ -50,7 +50,7 @@ export class NavbarComponent {
   openDialog() {
     if(this.signedIn){}
     this.dialog.open(SignInComponent, {
-      maxWidth: '100vw',
+      maxWidth: '95vw',
     });
     // this.dialog.open(SignUpComponent);
   }

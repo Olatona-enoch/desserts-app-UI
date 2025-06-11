@@ -71,11 +71,13 @@ export class CartComponent implements OnInit {
   openDialog() {
     if(this.signedIn){
       this.dialog.open(OrderConfirmationComponent ,{
-        // maxWidth: '100vw',
+        maxWidth: '95vw',
         panelClass: 'order-modal',
       });
     } else {
-      this.dialog.open(SignInComponent);
+      this.dialog.open(SignInComponent, {
+        maxWidth: '95vw',
+      });
     }
     // this.dialog.open(SignUpComponent);
   }

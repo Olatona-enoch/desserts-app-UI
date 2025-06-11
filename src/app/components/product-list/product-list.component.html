@@ -1,7 +1,10 @@
 
-<div>
-    <div class="relative w-full h-[240px] flex justify-center items-center shadow-sm rounded-xl ">
-        <img class="w-full h-full object-cover rounded-xl" src={{product.image}} alt="">
+<div class="">
+    <div class="relative w-full h-[240px] flex justify-center items-center shadow-sm rounded-lg  "
+    [ngClass]="{'border-[2.8px] border-custom-red': !itemAtZero}">
+        <div class="overflow-hidden rounded-lg w-full h-full">
+            <img class="w-full h-full object-cover rounded-lg transition-transform duration-300 hover:scale-125" src={{product.image}} alt="">
+        </div>
         <button (click)="addtocart(product)" *ngIf="itemAtZero" class="absolute -bottom-5 rounded-full bg-white border-[1px] border-rose-500 w-[65%] p-[12px] font-medium text-rose-900 hover:border-custom-red hover:text-custom-red transition ease-in-out duration-300 ">
             <div class="flex items-center justify-center gap-2">
                 <img class="object-cover" src="assets/images/icon-add-to-cart.svg" alt="">

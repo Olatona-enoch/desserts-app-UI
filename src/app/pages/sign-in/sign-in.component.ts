@@ -72,11 +72,11 @@ export class SignInComponent implements OnInit {
     this.toastr.error(error, 'Login Failed');
   }
 
-    signUp() {
+  signUp() {
     console.log("signup link clicked")
     this.dialog.closeAll();
     this.dialog.open(SignUpComponent, {
-      maxWidth: '100vw',
+      maxWidth: '95vw',
     });
   }
 

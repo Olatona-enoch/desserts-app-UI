@@ -30,7 +30,10 @@ module.exports = {
       },
       animation: {
         'pop-in': 'pop-in 0.3s ease-out'
-      }
+      },
+      screens: {
+      'xs': '330px',
+      },
     },
   },
   plugins: [

@@ -60,7 +60,6 @@ export class SignUpComponent implements OnInit {
   async onSubmit() {
     if (this.signUpForm.invalid) {
       this.signUpForm.markAllAsTouched();
-      this.onLoginError();
       return;
     }
     const formData = this.signUpForm.getRawValue();
@@ -78,6 +77,7 @@ export class SignUpComponent implements OnInit {
       this.onLoginSuccess();
     } catch (error: any) {
       this.errorMessage = error.message;
+      this.onLoginError();
     }
 
     // const formData = this.signUpForm.value;
@@ -95,7 +95,7 @@ export class SignUpComponent implements OnInit {
   signIn() {
     this.dialog.closeAll();
     this.dialog.open(SignInComponent, {
-      maxWidth: '100vw',
+      maxWidth: '95vw',
     });
   }
 

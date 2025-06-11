@@ -20,9 +20,9 @@
             <p class="text-rose-900">Order Total</p>
             <p class="text-rose-900 text-2xl font-semibold">${{totalPrice.toFixed(2)}}</p>
         </div>
-        <div class=" my-4 self-center flex items-center justify-center gap-4 h-[60px] bg-rose-100 rounded-lg w-full">
-            <img class="size-6" src="assets/images/icon-carbon-neutral.svg" alt="">
-            <p class="text-sm shrink"> This is a <span class="font-semibold">carbon-neutral</span> delivery</p>
+        <div class=" my-4 self-center flex items-center justify-center gap-3 h-[60px] bg-rose-100 rounded-lg w-full">
+            <img class="sm:ml-0 ml-3 size-6" src="assets/images/icon-carbon-neutral.svg" alt="">
+            <p class="text-sm w-fit flex-shrink"> This is a <span class="font-semibold">carbon-neutral</span> delivery</p>
         </div>
 
         <button (click)="openDialog()" class="btn-block bg-custom-red  text-rose-50 p-3 text-base rounded-full hover:bg-rose-950 transition ease-in duration-300"> Confirm Order</button>
