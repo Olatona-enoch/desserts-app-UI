@@ -23,6 +23,7 @@ import { Product, ProductService } from 'src/app/services/product.service';
 })
 export class HomeComponent implements OnInit {
   products: Product[] = [];
+  loading = true;
 
   constructor(
     private productService: ProductService
@@ -31,8 +32,9 @@ export class HomeComponent implements OnInit {
     setTimeout(() => {
       this.productService.getProducts().subscribe((data) => {
         this.products = data;
+        this.loading = false;
       });
-    }, 200);
+    }, 2000);
     
   }
 }

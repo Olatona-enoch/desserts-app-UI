@@ -1,6 +1,19 @@
 <div class="flex sm:flex-row flex-col  w-full justify-between mt-8 gap-10 ">
     <div class="flex-1">
-        <div [@.disabled]="!products.length" [@listAnimation] class="grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-8">
+        <div @popIn *ngIf="loading" class="grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-8">
+            <div *ngFor="let s of [1, 2, 3, 4, 5, 6, 7, 8]; let i = index" 
+            >
+                    <div class="relative w-full h-[240px] flex flex-col gap-4">
+                    <div class="skeleton bg-rose-500 h-full w-full"></div>
+                    <div class="skeleton bg-rose-500 h-4 w-28"></div>
+                    <div class="skeleton bg-rose-500 h-4 w-full"></div>
+                    <div class="skeleton bg-rose-500 h-4 w-full"></div>
+                </div>
+
+            </div>
+        </div>
+    
+        <div *ngIf="!loading" [@.disabled]="!products.length" [@listAnimation] class="grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-8">
              <app-product-list [@popIn]
              *ngFor="let product of products"
                 [product]= "product"

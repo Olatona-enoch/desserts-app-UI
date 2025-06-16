@@ -46,5 +46,6 @@ firestore-upload/serviceAccountKey.json
 /src/environments/firebaseconfig.ts
 
 #process env
-/src/process.env
+.env
 /src/environments/environment.prod.ts
+.vercel
