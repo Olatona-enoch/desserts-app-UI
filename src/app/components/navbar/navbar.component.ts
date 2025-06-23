@@ -5,6 +5,8 @@ import { SignUpComponent } from 'src/app/pages/sign-up/sign-up.component';
 import { AuthService } from 'src/app/services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { trigger, transition, style, animate, keyframes } from '@angular/animations';
+import { PaymentService } from 'src/app/services/payment.service';
+import { CartService } from 'src/app/services/cart.service';
 
 
 @Component({
@@ -32,12 +34,15 @@ export class NavbarComponent {
   constructor(
     public dialog: MatDialog,
     private authService: AuthService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private cartService: CartService,
+    private paymentService: PaymentService,
   ){}
 
   logout() {
     this.authService.logout();
     this.toastr.success('You have successfully Logged Out !');
+    this.cartService.clearCart();
 
   }
   testtoaster() {

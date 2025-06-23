@@ -8,7 +8,7 @@ const app = express();
 app.use(express.json());
 
 app.use(cors({
-  origin: 'http://localhost:4200',  // or use '*' for all origins during dev
+  origin: 'http://localhost:3000',  // or use '*' for all origins during dev
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'] // add headers you need
 }));
@@ -84,7 +84,7 @@ app.post('/api/initialize-payment', (req, res) => {
 app.post('/api/paystack-webhook', (req, res) => {
   const event = req.body;
 
-  console.log('✅ Paystack Webhook Event:', event);
+  console.log('Paystack Webhook Event:', event);
   webhookEvents.unshift(event);
 
   // Immediately acknowledge receipt of the webhook
@@ -92,9 +92,12 @@ app.post('/api/paystack-webhook', (req, res) => {
 
   // OPTIONAL: Do something with the event, e.g. update DB
   if (event.event === 'charge.success') {
-    console.log('💰 Payment successful! Reference:', event.data.reference);
+    console.log('Payment successful! Reference:', event.data.reference);
     // Example: update payment status in DB
   }
+  // You can handle other event types if needed
+});
+
   app.get('/webhook-events', (req, res) => {
     res.send(`
       <html>
@@ -114,12 +117,61 @@ app.post('/api/paystack-webhook', (req, res) => {
     `);
   });
 
-  // You can handle other event types if needed
-});
 
 
+// ==================
+// VERIFY TRANSACTION
+app.post('/api/verify-payment', (req, res) => {
+  const { reference } = req.body;
+
+  if (!reference) {
+    return res.status(400).json({ success: false, message: 'Transaction reference is required' });
+  }
+
+  const options = {
+    hostname: 'api.paystack.co',
+    port: 443,
+    path: `/transaction/verify/${reference}`,
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${process.env.PAYSTACK_SECRET_KEY}`,
+    }
+  };
+
+  const apiReq = https.request(options, (apiRes) => {
+    let data = '';
+
+    apiRes.on('data', (chunk) => {
+      data += chunk;
+    });
+
+    apiRes.on('end', () => {
+      try {
+        const result = JSON.parse(data);
+        if (result.status && result.data.status === 'success') {
+          res.status(200).json({ success: true, data: result.data });
+        } else {
+          res.status(400).json({
+            success: false,
+            message: result.data?.gateway_response || 'Transaction failed',
+            data: result.data
+          });
+        }
+      } catch (err) {
+        console.error('Error parsing verification response:', err);
+        res.status(500).json({ success: false, message: 'Invalid response from Paystack' });
+      }
+    });
+  });
+  apiReq.on('error', (err) => {
+    console.error('Paystack API error:', err);
+    res.status(500).json({ success: false, message: 'Unable to verify transaction' });
+  });
+
+  apiReq.end();
 
 
+})
 
 
 

@@ -29,14 +29,14 @@ export class OrderConfirmationComponent implements OnInit {
       this.amountToPay = this.cartService.getTotalPrice();
     });
   }
+  
 
 
   pay() {
     console.log("making payment")
     const email = `${this.user.email}`;
-    const amount = this.amountToPay * 100 * 1549.48;
+    const amount = Math.round(this.amountToPay * 100 * 1550);
     const currency = 'NGN';
-
     this.paymentService.initializePayment(email, amount, currency).subscribe({
       next: (result: any) => {
         console.log("result" , result)
@@ -49,4 +49,10 @@ export class OrderConfirmationComponent implements OnInit {
       }
     });
   }
+
+  // VerifyTransaction(){
+  //   this.paymentService.verifyPayment('jjuuiuiioioi')
+  // }
+  
+
 }
